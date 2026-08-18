@@ -5,9 +5,8 @@ streams with shape `(time, location, feature)`. It combines nonlinear latent
 state dynamics, ICA-based seasonal coordinates, automatic location grouping,
 and online regime selection behind a small API.
 
-This project is an independent, practical implementation of *Non-Linear
+This repository provides the official Python implementation of *Non-Linear
 Mining of Social Activities in Tensor Streams* by Kawabata et al. (KDD 2020).
-It is not an official reproduction of the original experimental code.
 
 ## Features
 
@@ -265,19 +264,7 @@ The example contains two distinct seasonal sources and saves its result to
 - `plot_decomposition(location, feature, path=None)`: plot and optionally save
   a decomposition.
 
-## Practical implementation choices
-
-The paper leaves some numerical procedures underspecified. This library uses
-the following deterministic choices:
-
-| Paper component | This library |
-| --- | --- |
-| Seasonal initialization | Phase averaging, SVD subspace reduction, and a FastICA rotation |
-| EM initialization | Linear least-squares state initialization |
-| Levenberg-Marquardt fitting | `lmfit.minimize(method="leastsq")` |
-| Exact MDL encoding | Gaussian BIC/MDL approximation |
-| Iterative group reassignment | Deterministic principal-axis bisection |
-| Quadratic transition tensor | Diagonal quadratic terms |
+## Implementation notes
 
 The external SVD projection is distinct from FastICA's internal whitening. It
 defines the seasonal subspace and prevents rank-deficient input from reaching
